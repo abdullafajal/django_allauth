@@ -13,3 +13,5 @@ pip install -r requirements.txt
 python manage.py migrate
 
 ### Run the server
+
+python manage.py runserver
