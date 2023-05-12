@@ -1,0 +1,76 @@
+{% extends "home.html" %}
+{% load static %}
+
+{% block content %}
+
+<style>
+    .gradient-custom {
+/* fallback for old browsers */
+background: #343434;
+
+/* Chrome 10-25, Safari 5.1-6 */
+background: -webkit-linear-gradient(to right bottom, rgb(41, 41, 41), rgb(126, 123, 123));
+
+/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+background: linear-gradient(to right bottom, rgb(21, 20, 18), rgb(195, 195, 195))
+}
+</style>
+
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8 mt-4">
+            <div class="container py-5 h-100">
+              <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col col-lg-6 mb-4 mb-lg-0">
+                  <div class="card mb-3" style="border-radius: .5rem;">
+                    <div class="row g-0">
+                      <div class="col-md-4 gradient-custom text-center text-white"
+                        style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
+                          alt="Avatar" class="img-fluid my-5" style="width: 80px;" />
+                          {% if full_name %}
+                          <h5>{{full_name}}</h5> 
+                          {% else %}
+                          <h5>{{request.user}}</h5> 
+                          {% endif %}
+                        <i class="far fa-edit mb-5"></i>
+                      </div>
+                      <div class="col-md-8">
+                        <div class="card-body p-4">
+                          <h6>Information</h6>
+                          <hr class="mt-0 mb-4">
+                          <div class="row pt-1">
+                            <div class=" mb-3">
+                              <h6>Email</h6>
+                              <p class="text-muted">{{request.user.email}}</p>
+                            </div>
+                          </div>
+                          <hr class="mt-0 mb-4">
+                          <div class="row pt-1">
+                            <div class="col-6 mb-3">
+                              <h6>Date joined</h6>
+                              <p class="text-muted">{{request.user.date_joined}}</p>
+                            </div>
+                            <div class="col-6 mb-3">
+                              <h6>Last Login</h6>
+                              <p class="text-muted">{{request.user.last_login}}</p>
+                            </div>
+                          </div>
+                          <div class="d-flex justify-content-start">
+                            <form method="post" action="{% url 'logout' %}">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-dark">Logout</button>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+           </div>
+    </div>
+    <div class="col-2"></div>
+</div>
+  
+{% endblock content %}
